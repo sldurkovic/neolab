@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+   <class name="com.neolab.crm.shared.domain.User" table="users">
+      <id name="uid"  >
+     	<generator class="assigned" />
+      </id>
+ 
+      <property name="firstName" column="first_name"/>  
+      <property name="lastName" column="last_name"/>  
+      <property name="password" />  
+      <property name="email" />  
+      <property name="level"/>  
+      <property name="image" insert="false"/>  
+      <property name="phone" />  
+      <property name="site" />  
+      <property name="emailPort" column="email_port" insert="false"/>  
+      <property name="emailHost" column="email_host" />  
+      <property name="emailProtocol" column="email_protocol" insert="false"/>  
+      <property name="emailPassword" column="email_password" />  
+     <!-- <property name="price" /> -->
+
+   </class>
+</hibernate-mapping>
+
+<!--
+SQL
+create table STOCK_PRICE(id bigint not null auto_increment, symbol  varchar(40), price decimal, primary key (id));
+
+create table STOCK_PRICE(symbol  varchar(40), price decimal, primary key (symbol));
+
+-->

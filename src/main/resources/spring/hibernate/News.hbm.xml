@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="com.neolab.crm.shared.domain">
+	<class name="com.neolab.crm.shared.domain.News" table="news">
+		<id name="nid">
+			<generator class="increment" />
+		</id>
+
+		<property name="level" />
+		<property name="body" />
+		<property name="pid" />
+		<property name="date" />
+		<property name="title" />
+		<property name="uid" />
+      <many-to-one name="user" class="User" column="uid" insert="false" update="false"/>  
+	</class>
+</hibernate-mapping>
+

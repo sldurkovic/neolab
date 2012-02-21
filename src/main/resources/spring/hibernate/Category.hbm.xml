@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="com.neolab.crm.shared.domain">
+	<class name="com.neolab.crm.shared.domain.Category" table="category">
+		<id name="cid">
+			<generator class="increment" />
+		</id>
+
+		<property name="title" />
+	</class>
+</hibernate-mapping>
+

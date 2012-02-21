@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+   <class name="com.neolab.crm.shared.domain.ProjectActivity" table="project_activity">
+      <id name="paid"  >
+     	<generator class="increment" />
+      </id>
+ 
+      <property name="uid" />  
+      <property name="pid"/>  
+
+   </class>
+</hibernate-mapping>
+

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+	<class name="com.neolab.crm.shared.domain.Task" table="tasks">
+		<id name="tid">
+			<generator class="increment" />
+		</id>
+
+		<property name="title" />
+		<property name="pid" />
+		<property name="dateStart" column="date_start" />
+		<property name="dateEnd" column="date_end" />
+		<property name="description" />
+		<property name="status" />
+	</class>
+</hibernate-mapping>
+

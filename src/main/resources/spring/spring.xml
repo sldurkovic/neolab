@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+	<!-- Enable the @AspectJ support <aop:aspectj-autoproxy /> <bean id="KBAspect" 
+		class="com.mondeca.knowledgebrowser.server.aop.KBAspect"> </bean> -->
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="465" />
+		<property name="protocol" value="smtps" />
+		<property name="username" value="neolabfon@gmail.com" />
+		<property name="password" value="neolabfon1234" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtps.auth">true</prop>
+				<prop key="mail.smtps.starttls.enable">true</prop>
+				<prop key="mail.smtps.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- hibernate -->
+
+	<bean id="validationFactory" class="javax.validation.Validation"
+		factory-method="buildDefaultValidatorFactory" />
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- Session Factory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>spring/hibernate/Users.hbm.xml</value>
+				<value>spring/hibernate/Projects.hbm.xml</value>
+				<value>spring/hibernate/Tasks.hbm.xml</value>
+				<value>spring/hibernate/ProjectActivity.hbm.xml</value>
+				<value>spring/hibernate/TaskActivity.hbm.xml</value>
+				<value>spring/hibernate/News.hbm.xml</value>
+				<value>spring/hibernate/Category.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+            </prop>
+				<prop key="hibernate.show_sql">
+					true
+            </prop>
+				<prop key="hbm2ddl.auto">
+					create-drop
+            </prop>
+
+			</props>
+		</property>
+	</bean>
+
+	<!-- DataSource -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>${database.driver}</value>
+		</property>
+		<property name="url">
+			<value>${database.url}</value>
+		</property>
+		<property name="username">
+			<value>${database.user}</value>
+		</property>
+		<property name="password">
+			<value>${database.password}</value>
+		</property>
+	</bean>
+	<!-- switches on the transactional behavior -->
+	<tx:annotation-driven />
+
+	<!-- a PlatformTransactionManager is still required -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<!-- (this dependency is defined somewhere else) -->
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- configuration -->
+	<bean class="com.neolab.crm.shared.resources.Configuration">
+		<property name="projectsPath" value="C:\\Users\\Slobodan\\Documents\\workspace-sts\\Neolab\\src\\main\\webapp\\projects\\" />
+			<property name="privileges">
+			<bean class="com.neolab.crm.shared.resources.Privileges">
+				<property name="levels">
+					<map>
+						<entry key="1">
+							<bean class="com.neolab.crm.shared.resources.Level">
+								<property name="name" value="admin" />
+								<property name="options">
+									<list>
+										<value>ADD_TASK</value>
+										<value>ASSIGN_TASK</value>
+										<value>CHANGE_TASK_STATUS</value>
+										<value>REMOVE_FROM_PROJECT</value>
+										<value>CREATE_PROJECT</value>
+										<value>ADD_USERS_TO_PROJECT</value>
+										<value>EDIT_PROJECT</value>
+										<value>EDIT_USER</value>
+										<value>WRITE_NEWS</value>
+										<value>WRITE_PROJECT_NEWS</value>
+										<value>UPLOAD_DOCUMENT</value>
+										<value>INVITE_USER</value>
+									</list>
+								</property>
+							</bean>
+						</entry>
+						<entry key="2">
+							<bean class="com.neolab.crm.shared.resources.Level">
+								<property name="name" value="moderator" />
+								<property name="options">
+									<list>
+										<value>ADD_TASK</value>
+										<value>ASSIGN_TASK</value>
+										<value>CHANGE_TASK_STATUS</value>
+										<value>REMOVE_FROM_PROJECT</value>
+										<value>CREATE_PROJECT</value>
+										<value>ADD_USERS_TO_PROJECT</value>
+										<value>EDIT_PROJECT</value>
+										<value>EDIT_USER</value>
+										<value>WRITE_NEWS</value>
+										<value>WRITE_PROJECT_NEWS</value>
+										<value>UPLOAD_DOCUMENT</value>
+										<value>INVITE_USER</value>
+									</list>
+								</property>
+							</bean>
+						</entry>
+						<entry key="3">
+							<bean class="com.neolab.crm.shared.resources.Level">
+								<property name="name" value="saradnik" />
+								<property name="options">
+									<list>
+									</list>
+								</property>
+							</bean>
+						</entry>
+					</map>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- configuration <bean class="com.neolab.crm.shared.resources.Configuration"> 
+		<property name="projectsPath" value="C:\\Users\\Slobodan\\Documents\\workspace-sts\\Neolab\\src\\main\\webapp\\projects\\" 
+		/> </bean> -->
+
+
+</beans>
+
+
+
+
+
+
+
+
+
+

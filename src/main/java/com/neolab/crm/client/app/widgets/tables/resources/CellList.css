@@ -1,0 +1,56 @@
+/*
+ * Copyright 2010 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+.cellListWidget {
+	border: 1px solid transparent;
+}
+
+.cellListEvenItem {
+  cursor: pointer;
+  zoom: 1;
+  background: transparent !important;
+}
+
+.cellListEvenItem:hover {
+  background: #C6F6AF !important;
+}
+
+.cellListOddItem {
+  cursor: pointer;
+  background: transparent !important;
+  margin: 5px 0px;
+}
+
+
+.cellListOddItem:hover {
+  background: #C6F6AF !important;
+/*   	background-image: url("images/active-back.png");
+	border: 1px solid #8EB190;
+	background-color: #82D93C;
+	background-repeat: repeat-x;
+	-moz-box-shadow: 2px 2px 4px #d3d3d3;
+ 	-webkit-box-shadow: 2px 2px 4px #d3d3d3;
+    box-shadow:2px 2px 4px #d3d3d3; */
+}
+
+
+.cellListKeyboardSelectedItem {
+}
+
+@sprite .cellListSelectedItem {
+  gwt-image: 'cellListSelectedBackground';
+  height: auto;
+  overflow: visible;
+}
